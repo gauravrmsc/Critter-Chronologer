@@ -10,16 +10,15 @@ import java.util.List;
 @Data
 public class PetEntity {
   @Id
-  @GeneratedValue(strategy = GenerationType.AUTO)
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
   private PetType type;
   private String name;
-  @ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+  @ManyToOne
   @JoinColumn(name = "owner" )
   private CustomerEntity owner;
   private LocalDate birthDate;
   private String notes;
   @ManyToMany
   private List<ScheduleEntity> schedules;
-
 }

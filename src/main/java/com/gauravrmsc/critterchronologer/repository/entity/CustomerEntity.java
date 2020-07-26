@@ -1,17 +1,18 @@
 package com.gauravrmsc.critterchronologer.repository.entity;
 
 import java.util.List;
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import lombok.Data;
 
 @Entity
 @Data
-public class CustomerEntity extends UserEntity {
+public class CustomerEntity {
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Long id;
+  private String name;
   private String phoneNumber;
   private String notes;
-  @OneToMany(cascade = CascadeType.ALL, mappedBy = "owner", fetch = FetchType.EAGER)
+  @OneToMany(cascade = CascadeType.REMOVE, mappedBy = "owner", fetch = FetchType.EAGER)
   private List<PetEntity> pets;
 }
